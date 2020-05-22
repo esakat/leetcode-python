@@ -1,17 +1,26 @@
 from typing import List
 
+# https://leetcode.com/problems/word-break/
 class Solution:
     def wordBreak(self, s: str, wordDict: List[str]) -> bool:
         wordSet = set(wordDict)
+        s_list = list(s)
 
-        i = 1
-        while i < len(s):
-            print(s, i)
-            f = s[:i]
-            if f in wordSet:
-                s = s[i:]
-                i == 1
-            else:
-                i += 1
+        def helper(start: int, memo: List[bool]) -> bool:
+            nonlocal s_list, wordSet
+            if start == len(s_list):
+                return True
 
-        return len(s) == 0
+            if memo[start] is not None:
+                return memo[start]
+
+            end = start + 1
+            while end <= len(s_list):
+                if "".join(s_list[start:end]) in wordSet and helper(end, memo):
+                    memo[start] = True
+                    return True
+
+                memo[start] = False
+                end += 1
+
+        return helper(0, [None] * len(s))
