@@ -34,6 +34,5 @@ class Solution:
                     group[i][j] = g
                     dfs(i, j, g)
                     g += 1
-                    print("--")
 
         return g
