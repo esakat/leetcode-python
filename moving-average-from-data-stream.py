@@ -13,16 +13,13 @@ class MovingAverage:
 
 
     def next(self, val: int) -> float:
-        if self.que.qsize() < self.size:
-            self.sum += val
-            self.que.put(val)
-            return self.sum / Queue.qsize(self.que)
-        else:
+        if self.que.qsize() == self.size:
             v = self.que.get()
             self.sum -= v
-            self.sum += val
-            self.que.put(val)
-            return self.sum / self.size
+
+        self.sum += val
+        self.que.put(val)
+        return self.sum / Queue.qsize(self.que)
 
 
 
