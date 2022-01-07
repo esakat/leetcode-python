@@ -11,23 +11,28 @@ from typing import List
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
         
-        res = [[]]
+        # if currentSubset in resを使わない版
+        # 無駄な計算が減ってるはずなので速いはず
+
+        res = []
         nums = sorted(nums)
 
-        def backtracking(length: int, index: int, currentSubset: List[int]):
-            if len(currentSubset) == length and currentSubset not in res:
-                res.append(currentSubset)
-                return
-            
+        def backtracking(index: int, currentSubset: List[int]):
+            res.append(currentSubset[:])
+
             for i in range(index, len(nums)):
-                newCurrentSubset = currentSubset[:]
-                newCurrentSubset.append(nums[i])
-                backtracking(length, i+1, newCurrentSubset)
+                # ソート済みで、隣り合うのが同じ数の場合は重複するので、飛ばす
+                if i > index and nums[i] == nums[i - 1]:
+                    continue
 
+                # ※
+                currentSubset.append(nums[i])
+                backtracking(i + 1, currentSubset)
+                # 次のループでは、次の要素から開始とするsubsetを探すので除外する
+                # 再帰の中でもやってるので、参照渡しでリスト渡していっても、※で追加された処理が削除されるのは変わりない
+                currentSubset.pop()
         
-
-        for length in range(1, len(nums)+1):
-            backtracking(length, 0, [])
+        backtracking(0, [])
         return res
 
 
