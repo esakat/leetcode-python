@@ -33,14 +33,11 @@ class Solution:
             buf4 = [' '] * 4
             read_count = read4(buf4)
             for j, k in enumerate(range(count, count+read_count)):
-                print(j, k, read_count, count)
                 if k >= n:
                     break
                 buf[k] = buf4[j]    
             count += read_count
             
-
-
         return min(n, count)
         
         
