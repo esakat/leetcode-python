@@ -9,6 +9,11 @@
 # @lc code=start
 class TwoSum:
 
+    # MyApploach. Use Dict
+    # 最悪実行時、O(N^2) N <= 10^4なので間に合わないと思ったけど
+    # これが最適解らしい(, あとはリストと2pointer使って、毎回ソートじゃなくて、要素が追加後、初回のfind時だけソートする)
+    # https://github.com/LeetCode-Feedback/LeetCode-Feedback/issues/4367#issuecomment-893667359
+    # PythonだとキツいけどJavaとかC++だと１s以内で処理できるらしい、Python用に少し緩くしてくれてるらしい
     def __init__(self):
         self.dict = dict()
 
