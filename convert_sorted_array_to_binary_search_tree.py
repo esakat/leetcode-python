@@ -1,23 +1,32 @@
-from typing import List
-from sys import maxsize
-from bisect import bisect_left
-from algorithm.treenode import TreeNode
+#
+# @lc app=leetcode id=243 lang=python3
+#
+# [243] Shortest Word Distance
+#
 
-# https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
+
+
+# @lc code=start
 class Solution:
-    def sortedArrayToBST(self, nums: List[int]) -> TreeNode:
+    def shortestDistance(self, wordsDict: List[str], word1: str, word2: str) -> int:
+        beforeWord1Pos = -1
+        beforeWord2Pos = -1
+        ans = 1000000000
 
-        def construct(left: int, right: int) -> TreeNode:
-            if left > right:
-                return None
+        for i, word in enumerate(wordsDict):
+            if word == word1:
+                if beforeWord2Pos >= 0:
+                    ans = min(ans, i - beforeWord2Pos)
+                beforeWord1Pos = i
+            elif word == word2:
+                if beforeWord1Pos >= 0:
+                    ans = min(ans, i - beforeWord1Pos)
+                beforeWord2Pos = i               
 
-            p = int((left + right)/2)
-            if (left + right)%2 == 1:
-                p += 1
+        return ans            
 
-            root = TreeNode(nums[p])
-            root.left = construct(left, p-1)
-            root.right = construct(p+1, right)
-            return root
+# 時間計算量もO(N=wordsDictの長さ)だし、空間計算量もO(1)なので最適解じゃないかな
+# 最適解だった。コードはもう少し綺麗にできるかもだけど     
 
-        return construct(0, len(nums)-1)
+# @lc code=end
+
