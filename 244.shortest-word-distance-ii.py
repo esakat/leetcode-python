@@ -11,17 +11,30 @@ class WordDistance:
 
     def __init__(self, wordsDict: List[str]):
         self.wordDict = wordsDict[:]
+        self.wordIndexDict = dict()
+        for i, word in enumerate(wordsDict):
+            if word in self.wordIndexDict:
+                self.wordIndexDict[word].append(i)
+            else:
+                self.wordIndexDict[word] = [i]
 
     def shortest(self, word1: str, word2: str) -> int:
-        word1pos = word2pos = -1
-        shortestPath = 1000000000
-        for i, word in enumerate(self.wordDict):
-            if word == word1:
-                word1pos = i
-            if word == word2:
-                word2pos = i
-            if word1pos >= 0 and word2pos >= 0:
-                shortestPath = min(shortestPath, abs(word1pos - word2pos))
+        word1IndexList = self.wordIndexDict[word1]
+        word2IndexList = self.wordIndexDict[word2]
+        i = j = 0
+        shortestPath = 1000000
+        while i < len(word1IndexList) and j < len(word2IndexList):
+            pos1, pos2 = word1IndexList[i], word2IndexList[j]
+            shortestPath = min(shortestPath, abs(pos1-pos2))
+            if pos1 < pos2:
+                if i == len(word1IndexList)-1:
+                    break
+                i += 1
+            else:
+                if j == len(word2IndexList)-1:
+                    break
+                j += 1
+
 
         return shortestPath
 
