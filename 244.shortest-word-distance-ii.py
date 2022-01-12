@@ -38,10 +38,10 @@ class WordDistance:
 
         return shortestPath
 
-
-# Your WordDistance object will be instantiated and called as such:
-# obj = WordDistance(wordsDict)
-# param_1 = obj.shortest(word1,word2)
+# 243: https://github.com/esakat/leetcode-python/blob/master/243.shortest-word-distance.py
+# と同じ実装にするとTLEになる。文字列の長さが10^3で、複数回このメソッドがよばれるため
+# 文字列の比較処理を減らすために、一度ハッシュ化して各文字列のインデックスリストを作成しておき、比較時はこのインデックスリストを比較する
+# これにより空間計算量は増えるけども、時間計算量は減らせる。
 
 # @lc code=end
 
