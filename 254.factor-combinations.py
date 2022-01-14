@@ -4,7 +4,8 @@
 # [254] Group Shifted Strings
 #
 
-
+from typing import List
+import math
 
 # @lc code=start
 class Solution:

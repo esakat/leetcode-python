@@ -4,6 +4,7 @@
 # [249] Group Shifted Strings
 #
 
+from typing import List
 
 
 # @lc code=start

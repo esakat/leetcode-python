@@ -4,6 +4,7 @@
 # [186] Reverse Words in a String II
 #
 
+from typing import List
 
 
 # @lc code=start

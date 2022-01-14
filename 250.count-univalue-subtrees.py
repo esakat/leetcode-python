@@ -4,6 +4,7 @@
 # [250] Count Univalue Subtrees
 #
 
+from typing import Optional
 
 
 # @lc code=start

@@ -4,6 +4,7 @@
 # [244] Shortest Word Distance II
 #
 
+from typing import List
 
 
 # @lc code=start
