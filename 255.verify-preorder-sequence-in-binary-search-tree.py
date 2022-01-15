@@ -13,6 +13,7 @@ class Solution:
         stack = []
         low = -1
         for p in preorder:
+            # 先駆け順だと、DFS(左をとにかく先に見ていく)のですでに葉までたどり着いた値より小さい値が以降は出てこない。出てくる＝NG
             if p < low:
                 return False
             while len(stack) > 0 and p > stack[-1]:
