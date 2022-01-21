@@ -4,13 +4,8 @@
 # [271] Encode and Decode Strings
 #
 
-from audioop import reverse
-from typing import List
-import itertools
-
 
 # @lc code=start
-class Codec:
     def encode(self, strs: [str]) -> str:
         """Encodes a list of strings to a single string.
         """
@@ -22,6 +17,7 @@ class Codec:
                 if c == ',' or c == '|':
                     retstr += '|'
                 retstr += c
+            retstr += ','
 
         return retstr        
 
@@ -42,6 +38,7 @@ class Codec:
                 continue
             now += c
             escape_flag = False
+
 
         return ret
         
