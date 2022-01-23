@@ -32,5 +32,12 @@ class Solution:
 
         return nret[:k]
 
+# HARDだけど結構すぐ解けたな
+# 一番簡単なアプローチ　time complexity O(NlogN)の回答
+# O(N)で行けたりするらしい
+# アプローチ2だとheap, 優先度付きキューに突っ込んでいく、これだとO(Nlogk)になる
+# N >>>> k とかだとこっちが早くなるね多少
+
+
 # @lc code=end
 
