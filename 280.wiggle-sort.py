@@ -18,6 +18,11 @@ class Solution:
         #         break
         #     nums[i], nums[i+1] = nums[i+1], nums[i]
         # 上自分で考えた回答　O (NlogN）
+
+        # ワンパスで行ける方法
+        for i in range(len(nums)-1):
+            if (i % 2 == 0) == (nums[i] > nums[i+1]):
+                nums[i], nums[i+1] = nums[i+1], nums[i]
         
 # @lc code=end
 
