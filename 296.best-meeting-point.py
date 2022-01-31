@@ -25,9 +25,6 @@ class Solution:
                 if grid[j][i] == 1:
                     countOfColumn[i] += 1
 
-        # print(countOfColumn)
-        # print(countOfRow)
-
         bestRow = sys.maxsize
         bestColumn = sys.maxsize
 
