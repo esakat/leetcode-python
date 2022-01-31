@@ -14,7 +14,7 @@ class Solution:
 
         m = len(image)
         n = len(image[0])
-
+        
         seen = [[False for i in range(n)] for j in range(m)]
         seen[x][y] = True
         stuck = [(x, y)]
@@ -25,8 +25,8 @@ class Solution:
             maxx = max(maxx, h)
             miny = min(miny, w)
             maxy = max(maxy, w)
-            print(h, w)
-            print(maxx, minx, maxy, miny)
+            
+            
             if h > 0 and image[h-1][w] == "1" and not seen[h-1][w]:
                 seen[h-1][w] = True
                 stuck.append((h-1, w))  
@@ -36,7 +36,7 @@ class Solution:
             if w > 0 and image[h][w-1] == "1" and not seen[h][w-1]:
                 seen[h][w-1] = True
                 stuck.append((h, w-1))  
-            if w > n-1 and image[h][w+1] == "1" and not seen[h][w+1]:
+            if w < n-1 and image[h][w+1] == "1" and not seen[h][w+1]:
                 seen[h][w+1] = True
                 stuck.append((h, w+1))
 
@@ -44,6 +44,12 @@ class Solution:
         
         return (maxx - minx + 1) * (maxy - miny + 1)
 
+
+# 愚直なBFSアプローチ
+# Time O(mn), Space O(mn)
+
+# 最適解だと、列・行ごとに別々にやって、バイナリーサーチを組み合わせるらしい
+# Time O(mlogn + nlogm) , Space O(1)になるらしい　すげ
 
 # @lc code=end
 
